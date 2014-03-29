@@ -222,3 +222,5 @@ target/
 # Generated JavaScript files.
 resources/public/simple.js
 
+# JavaScript libraries
+three.min.js

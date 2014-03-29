@@ -7,8 +7,7 @@
                  [org.clojure/clojurescript "0.0-2197"]
                  [compojure "1.1.6"]
                  [ring "1.2.2"]
-                 [prismatic/dommy "0.1.2"]
-                 [cljsthree "0.1.1"]]
+                 [prismatic/dommy "0.1.2"]]
   :source-paths ["src/clj"]             ; Compiling Clojure files
   :plugins [[lein-cljsbuild "1.0.2"]
             [lein-ring "0.8.8"]]
