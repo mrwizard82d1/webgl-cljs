@@ -1,5 +1,9 @@
 (ns webgl-cljs.simple
-  (:require [dommy.core :as dommy])
+  (:require [dommy.core :as dommy]
+            [cljsthree.renderers.webgl :as renderer]
+            [cljsthree.scene.scene :as scene]
+            [cljsthree.cameras.perspective :as camera]
+            [cljsthree.materials.meshbasic :as meshbasic])
   (:use-macros [dommy.macros :only [sel1]]))
 
 (defn add-to-scene
@@ -14,27 +18,27 @@
   (let [container (sel1 :#container)
         width (.-offsetWidth container)
         height (.-offsetHeight container)
-        renderer (THREE.WebGLRenderer.)
-        scene (THREE.Scene.)
-        camera
-        (THREE.PerspectiveCamera. 45    ; field of view
-                                  (/ width height) ; screen aspect ratio
-                                  1     ; near clipping plane
-                                  4000) ; far clippling plane
+        renderer (renderer/webgl)
+        scene (scene/scene)
+        camera (camera/perspective 45       ; field of view
+                                   (/ width height) ; screen aspect ratio
+                                   1        ; near clipping plane
+                                   4000)    ; far clippling plane
         geometry (THREE.PlaneGeometry. 1 1) ; rectagle with width height
-        mesh (THREE.Mesh. geometry (THREE.MeshBasicMaterial.))]
+        material (meshbasic/meshbasic {:color 0xff0000})
+        mesh (THREE.Mesh. geometry material)]
     ;; Set up the canvas on the page
-    (.setSize renderer width height)
+    (renderer/set-size renderer width height)
     (dommy/append! container (.-domElement renderer))
     
     ;; Set up the camera
-    (-> camera .-position (.set 0 0 3.333))
+    (camera/set-position camera [0 0 3.333])
 
     ;; add everything to the scene
-    (add-to-scene scene camera mesh)
+    (scene/add scene camera mesh)
 
     ;; and render it.
-    (.render renderer scene camera)))
+    (renderer/render renderer scene camera)))
 
 (set! (.-onload js/window) render)
 
