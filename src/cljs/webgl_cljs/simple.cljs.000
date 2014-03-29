@@ -16,22 +16,24 @@
         height (.-offsetHeight container)
         renderer (THREE.WebGLRenderer.)
         scene (THREE.Scene.)
-        camera
-        (THREE.PerspectiveCamera. 45    ; field of view
-                                  (/ width height) ; screen aspect ratio
-                                  1     ; near clipping plane
-                                  4000) ; far clippling plane
+        camera (THREE.PerspectiveCamera. 45    ; field of view
+                                         (/ width height) ; screen aspect ratio
+                                         1     ; near clipping plane
+                                         4000) ; far clippling plane
         geometry (THREE.PlaneGeometry. 1 1) ; rectagle with width height
-        mesh (THREE.Mesh. geometry (THREE.MeshBasicMaterial.))]
+        mesh (THREE.Mesh. geometry (THREE.MeshBasticMaterial.))]
     ;; Set up the canvas on the page
     (.setSize renderer width height)
     (dommy/append! container (.-domElement renderer))
     
     ;; Set up the camera
-    (-> camera .-position (.set 0 0 3.333))
+    (-> camera
+        .-position
+        (.set (THREE.Vector3. 0 0 400)))
 
     ;; add everything to the scene
-    (add-to-scene scene camera mesh)
+    (.add scene camera)
+    (.add scene mesh)
 
     ;; and render it.
     (.render renderer scene camera)))
