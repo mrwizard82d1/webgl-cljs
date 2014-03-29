@@ -7,6 +7,7 @@
                  [org.clojure/clojurescript "0.0-2197"]
                  [compojure "1.1.6"]
                  [ring "1.2.2"]
+                 [prismatic/dommy "0.1.2"]
                  [cljsthree "0.1.1"]]
   :source-paths ["src/clj"]             ; Compiling Clojure files
   :plugins [[lein-cljsbuild "1.0.2"]
@@ -14,7 +15,7 @@
   :ring {:handler webgl-cljs.core/handler}
   :cljsbuild
   {:builds
-   [{:source-paths ["src/cljs"]
+   [{:source-paths ["src/cljs"]         ; All cljs files in directory
      :compiler
      {:output-to "resources/public/simple.js"
       :optimizations :whitespace
