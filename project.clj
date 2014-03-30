@@ -17,8 +17,9 @@
   :ring {:handler webgl-cljs.core/handler}
   :cljsbuild
   {:builds
-   [{:source-paths ["src/cljs"]         ; All cljs files in directory
+   {:simple-debug
+    {:source-paths ["src/cljs/simple" "src/cljs/connect"]
      :compiler
      {:output-to "resources/public/simple.js"
       :optimizations :whitespace
-      :pretty-print true}}]})
+      :pretty-print true}}}})

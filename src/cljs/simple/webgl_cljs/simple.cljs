@@ -27,7 +27,7 @@
                                    1        ; near clipping plane
                                    4000)    ; far clippling plane
         geometry (plane-geometry/plane-geometry 1 1) ; rectagle with width height
-        material (meshbasic/meshbasic {:color 0xf000f0})
+        material (meshbasic/meshbasic {:color 0x00f0f0})
         mesh (mesh/mesh geometry material)]
     ;; Set up the canvas on the page
     (renderer/set-size renderer width height)
