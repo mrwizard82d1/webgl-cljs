@@ -3,7 +3,9 @@
             [cljsthree.renderers.webgl :as renderer]
             [cljsthree.scene.scene :as scene]
             [cljsthree.cameras.perspective :as camera]
-            [cljsthree.materials.meshbasic :as meshbasic])
+            [cljsthree.extras.geometries.plane-geometry :as plane-geometry]
+            [cljsthree.materials.meshbasic :as meshbasic]
+            [cljsthree.objects.mesh :as mesh])
   (:use-macros [dommy.macros :only [sel1]]))
 
 (defn add-to-scene
@@ -24,9 +26,9 @@
                                    (/ width height) ; screen aspect ratio
                                    1        ; near clipping plane
                                    4000)    ; far clippling plane
-        geometry (THREE.PlaneGeometry. 1 1) ; rectagle with width height
-        material (meshbasic/meshbasic {:color 0xff0000})
-        mesh (THREE.Mesh. geometry material)]
+        geometry (plane-geometry/plane-geometry 1 1) ; rectagle with width height
+        material (meshbasic/meshbasic {:color 0xf000f0})
+        mesh (mesh/mesh geometry material)]
     ;; Set up the canvas on the page
     (renderer/set-size renderer width height)
     (dommy/append! container (.-domElement renderer))

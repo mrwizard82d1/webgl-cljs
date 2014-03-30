@@ -8,7 +8,9 @@
                  [compojure "1.1.6"]
                  [ring "1.2.2"]
                  [prismatic/dommy "0.1.2"]
-                 [cljsthree "0.1.1"]]
+                 [cljsthree "0.1.2-SNAPSHOT"]]
+  :repositories [["cljsthree-local"
+                  "file:///D:/cygwin/home/l.jones/professional/projects/cljsthree/target/cljsthree-0.1.2-SNAPSHOT.jar"]]
   :source-paths ["src/clj"]             ; Compiling Clojure files
   :plugins [[lein-cljsbuild "1.0.2"]
             [lein-ring "0.8.8"]]
