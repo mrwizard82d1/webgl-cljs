@@ -60,9 +60,3 @@ function onMouseUp(event)
     animating = (! animating);
 }
 
-window.onload = onLoad
-
-
-
-
-
