@@ -1,5 +1,13 @@
 (ns webgl-cljs.real)
 
+(defn on-mouse-up [animating event]
+  (.preventDefault event)
+  (swap! animating not))
+
+(defn add-mouse-handler [renderer animating]
+  (let [dom (.-domElement renderer)]
+    (.addEventListener dom "mouseup" (partial on-mouse-up animating) false)))
+
 (defn run [renderer scene camera cube animating]
   (.render renderer scene camera)
   
@@ -26,10 +34,12 @@
               material (THREE.MeshPhongMaterial. (clj->js {:map texture-map}))
               geometry (THREE.CubeGeometry. 1 1 1)
               cube (THREE.Mesh. geometry material)
-              animating (atom true)]
+              animating (atom false)]
           (set! (.-x (.-rotation cube)) (/ Math/PI 5))
           (set! (.-y (.-rotation cube)) (/ Math/PI 5))
           (.add scene cube)
+          (.render renderer scene camera)
+          (add-mouse-handler renderer animating)
           (run renderer scene camera cube animating))))))
   
 (set! (.-onload js/window) on-load)
