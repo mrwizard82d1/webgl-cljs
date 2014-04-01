@@ -1,5 +1,13 @@
 (ns webgl-cljs.real)
 
+(defn run [renderer scene camera cube animating]
+  (.render renderer scene camera)
+  
+  (if @animating
+    (set! (.-y (.-rotation cube)) (- (.-y (.-rotation cube)) 0.01)))
+
+  (.requestAnimationFrame js/window (partial run renderer scene camera cube animating)))
+
 (defn on-load []
   (let [container (.getElementById js/document "container")
         width (.-offsetWidth container)
@@ -17,10 +25,11 @@
               texture-map (. THREE.ImageUtils loadTexture map-url)
               material (THREE.MeshPhongMaterial. (clj->js {:map texture-map}))
               geometry (THREE.CubeGeometry. 1 1 1)
-              cube (THREE.Mesh. geometry material)]
+              cube (THREE.Mesh. geometry material)
+              animating (atom true)]
           (set! (.-x (.-rotation cube)) (/ Math/PI 5))
           (set! (.-y (.-rotation cube)) (/ Math/PI 5))
           (.add scene cube)
-          (.render renderer scene camera))))))
+          (run renderer scene camera cube animating))))))
   
 (set! (.-onload js/window) on-load)
