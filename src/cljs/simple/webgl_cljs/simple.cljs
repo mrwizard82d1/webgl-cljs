@@ -8,12 +8,6 @@
             [cljsthree.objects.mesh :as mesh])
   (:use-macros [dommy.macros :only [sel1]]))
 
-(defn add-to-scene
-  "Add a number of objects to the scene."
-  [scene & objectss]
-  (doseq [object objectss]
-    (.add scene object)))
-
 (defn render
   "Render the scene displayed on the page."
   []

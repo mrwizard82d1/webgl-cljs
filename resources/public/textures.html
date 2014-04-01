@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Loading Textures</title>
+    <script type="text/javascript" src="three.min.js"></script>
+    <script>
+      function onLoad() 
+      {
+          var mapUrl = "../images/mr_wizard.002.jpg"
+          var texture = THREE.ImageUtils.loadTexture(mapUrl)
+      }
+    </script>
+  </head>
+  <body onLoad="onLoad();">
+    <h1>Loading Textures</h1>
+
+    <address>
+      <a href="mailto:l.jones@SCDEV02"></a>
+    </address>
+
+    <div id="container"
+	 style="width:610px; height:377px; background-color:#000000">
+    </div>
+
+  </body>
+</html>

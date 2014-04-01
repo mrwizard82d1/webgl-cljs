@@ -7,6 +7,7 @@
                  [org.clojure/clojurescript "0.0-2197"]
                  [compojure "1.1.6"]
                  [ring "1.2.2"]
+                 [enfocus "2.0.2"]
                  [prismatic/dommy "0.1.2"]
                  [cljsthree "0.1.2-SNAPSHOT"]]
   :repositories [["cljsthree-local"
@@ -21,5 +22,11 @@
     {:source-paths ["src/cljs/simple" "src/cljs/connect"]
      :compiler
      {:output-to "resources/public/simple.js"
+      :optimizations :whitespace
+      :pretty-print true}}
+    :real-debug
+    {:source-paths ["src/cljs/real" "src/cljs/connect"]
+     :compiler
+     {:output-to "resources/public/real.js"
       :optimizations :whitespace
       :pretty-print true}}}})

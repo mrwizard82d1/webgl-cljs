@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to WebGL</title>
+  </head>
+  <body>
+    <h1>Welcome to WebGL!</h1>
+
+    <address>
+      <a href="mailto:l.jones@SCDEV02"></a>
+    </address>
+
+    <div id="container"
+	 style="width:610px; height:377px; background-color:#000000">
+    </div>
+
+    <script type="text/javascript" src="three.min.js"></script>
+    <!-- Work around for null point in THREE.ImplUtils.loadTexture() -->
+    <script>
+      var texture = THREE.ImageUtils.loadTexture("images/mr_wizard.002.jpg")
+    </script>
+    <script type="text/javascript" src="real.js"></script>
+    
+  </body>
+</html>
